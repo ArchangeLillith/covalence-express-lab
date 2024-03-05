@@ -9,14 +9,15 @@ app.get("/", (req, res) => {
 });
 
 //Logger
-app.use((req, res) => {
+app.use((req, res, next) => {
 	console.log(req.url);
 	next();
 });
 
 //Write from the form submission to the json
 app.post("/submitdata", (req, res) => {
-	fs.appendFileSync("formpost.json", `${req.body.name}\n`);
+	express.urlencoded({ extended: true });
+	fs.appendFileSync("formpost.json", `${req.body.name}`);
 	next();
 });
 
