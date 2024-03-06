@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 //Write from the form submission to the json
-app.post("/submitdata", (req, res) => {
+app.post("/submitdata", (req, res, next) => {
 	express.urlencoded({ extended: true });
 	fs.appendFileSync("formpost.json", `${req.body.name}`);
 	next();
